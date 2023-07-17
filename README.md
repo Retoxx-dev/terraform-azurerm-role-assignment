@@ -89,7 +89,6 @@ module "role_assignments" {
 }
 ```
 
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -115,6 +114,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_role_assignment.groups](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.principal_ids](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.service_principals](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.users](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azuread_group.group_objects](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) | data source |
@@ -125,7 +125,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_role_assignments"></a> [role\_assignments](#input\_role\_assignments) | The role assignments to create | <pre>list(object({<br>    user_principal_names = optional(list(string), [])<br>    group_names          = optional(list(string), [])<br>    sp_names             = optional(list(string), [])<br>    role_names           = list(string)<br>    scope = string<br>  }))</pre> | n/a | yes |
+| <a name="input_role_assignments"></a> [role\_assignments](#input\_role\_assignments) | The role assignments to create | <pre>list(object({<br>    user_principal_names = optional(list(string), [])<br>    group_names          = optional(list(string), [])<br>    sp_names             = optional(list(string), [])<br>    principal_ids        = optional(list(string), [])<br>    role_names           = list(string)<br>    scope                = string<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 

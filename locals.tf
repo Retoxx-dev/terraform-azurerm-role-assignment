@@ -43,4 +43,19 @@ locals {
       ]
     ]
   ])
+
+  role_principal_id_combinations = flatten([
+    for policy in var.role_assignments :
+    [
+      for role_name in policy.role_names :
+      [
+        for principal_id in policy.principal_ids :
+        {
+          role_name    = role_name
+          principal_id = principal_id
+          scope        = policy.scope
+        }
+      ]
+    ]
+  ])
 }

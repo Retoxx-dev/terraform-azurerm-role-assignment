@@ -7,6 +7,7 @@ variable "role_assignments" {
     user_principal_names = optional(list(string), [])
     group_names          = optional(list(string), [])
     sp_names             = optional(list(string), [])
+    principal_ids        = optional(list(string), [])
     role_names           = list(string)
     scope                = string
   }))

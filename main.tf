@@ -69,3 +69,22 @@ resource "azurerm_role_assignment" "service_principals" {
   principal_id         = data.azuread_service_principal.sp_objects["${each.value.role_name}-${each.value.sp_name}"].id
   role_definition_name = each.value.role_name
 }
+
+#################################################################
+# ACCESS POLICIES - APPLICATIONS
+#################################################################
+
+resource "azurerm_role_assignment" "principal_ids" {
+  for_each = {
+    for combination in toset(local.role_principal_id_combinations) :
+    "${combination.role_name}-${combination.principal_id}" => {
+      role_name    = combination.role_name
+      principal_id = combination.principal_id
+      scope        = combination.scope
+    } if combination.principal_id != null
+  }
+
+  scope                = each.value.scope
+  principal_id         = each.value.principal_id
+  role_definition_name = each.value.role_name
+}

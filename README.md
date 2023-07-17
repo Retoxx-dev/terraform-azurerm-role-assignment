@@ -74,6 +74,21 @@ module "role_assignments" {
 }
 ```
 
+### Assign roles to service principals but with principal ids
+```hcl
+module "role_assignments" {
+  source = "retoxx-dev/role-assignment/azurerm"
+
+  role_assignments = [
+    {
+      scope           = azurerm_resource_group.this.id
+      principal_ids   = ["spname1", "spname2", "spname3"]
+      role_names      = ["Reader", "Web Plan Contributor"]
+    }
+  ]
+}
+```
+
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
